@@ -178,11 +178,11 @@ public class InterfacePrueba extends JFrame {
 		
 	}
 	public void listar(){
-		for (int i = 0; i < lc.getlCliente().size(); i++) {
+		for (int i = 0; i < lc.getlistaCli().size(); i++) {
 			System.out
-					.println(lc.getlCliente().get(i).getNombre() + " " + lc.getlCliente().get(i).getApellidos() + " "
-							+ lc.getlCliente().get(i).getDni() + " " + lc.getlCliente().get(i).getEdad() + " "
-							+ lc.getlCliente().get(i).getColorPelo());
+					.println(lc.getlistaCli().get(i).getNombre() + " " + lc.getlistaCli().get(i).getApellidos() + " "
+							+ lc.getlistaCli().get(i).getDni() + " " + lc.getlistaCli().get(i).getEdad() + " "
+							+ lc.getlistaCli().get(i).getColorPelo());
 		}
 		System.out.println();
 	}
