@@ -2,35 +2,24 @@ package Controlador;
 
 import java.util.ArrayList;
 
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-
 import Modelo.Cliente;
 
 public class ListaClientes {
-	private ArrayList<Cliente> lCliente=new ArrayList<>();
-	JTextField txtNombre;
-	JTextField txtApellidos;
-	JTextField txtDNI;
-	JTextField txtEdad;
-	JTextField txtColorPelo;
-	JComboBox combo;
-	
+	private ArrayList<Cliente> lCliente = new ArrayList<>();
+
 	public void cargarLista() {
-		for (int i = 0; i < lCliente.size(); i++) {
-			combo.addItem(lCliente.get(i).getNombre());
-		}
+		
 	}
 
-	public void escribirNewElemento() {
-		lCliente.add(new Cliente(txtNombre.getText(), txtApellidos.getText(), txtDNI.getText(), Integer.parseInt(txtEdad.getText()), txtColorPelo.getText()));
+	public void escribirNewElemento(Cliente cliente) {
+		lCliente.add(cliente);
 	}
 
-	public ArrayList<Cliente> getCliente() {
+	public ArrayList<Cliente> getlCliente() {
 		return lCliente;
 	}
 
-	public void setCliente(ArrayList<Cliente> cliente) {
-		this.lCliente = cliente;
+	public void setlCliente(ArrayList<Cliente> lCliente) {
+		this.lCliente = lCliente;
 	}
 }
