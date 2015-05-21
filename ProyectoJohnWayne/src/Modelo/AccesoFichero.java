@@ -5,8 +5,10 @@ import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class AccesoFichero {
@@ -27,15 +29,18 @@ public class AccesoFichero {
 		
 	}
 	
-	public static void escribirFichero(String ruta, Object obj) throws IOException{
+	public static void escribirFichero(String ruta, Object obj) throws IOException, FileNotFoundException{
+		ObjectOutputStream objetoEscritura=new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(ruta)));
+		objetoEscritura.writeObject(obj);
+		objetoEscritura.close();
 		
-		String cadena = new String("");
-		
-		FileOutputStream archivoW = new FileOutputStream(cadena.concat(ruta + ".obj"));
-		
-		BufferedOutputStream bufferW = new BufferedOutputStream(archivoW);
-		
-		DataOutputStream conversorW = new DataOutputStream(bufferW);
+//		String cadena = new String("");
+//		
+//		FileOutputStream archivoW = new FileOutputStream(cadena.concat(ruta + ".obj"));
+//		
+//		BufferedOutputStream bufferW = new BufferedOutputStream(archivoW);
+//		
+//		DataOutputStream conversorW = new DataOutputStream(bufferW);
 		
 		
 		

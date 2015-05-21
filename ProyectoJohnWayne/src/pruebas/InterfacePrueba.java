@@ -21,6 +21,8 @@ import Modelo.Cliente;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class InterfacePrueba extends JFrame {
 
@@ -164,8 +166,19 @@ public class InterfacePrueba extends JFrame {
 		btnSoyUnBoton = new JButton("Soy un boton");
 		btnSoyUnBoton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				lc.escribirNewElemento(new Cliente(txtNombre.getText(), txtApellido.getText(), txtDni.getText(),
-						Integer.parseInt(txtEdad.getText()), txtColPelo.getText()));
+				try {
+					lc.escribirNewElemento(new Cliente(txtNombre.getText(), txtApellido.getText(), txtDni.getText(),
+							Integer.parseInt(txtEdad.getText()), txtColPelo.getText()));
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				listar();
 				limpiar();
 			}
@@ -178,11 +191,11 @@ public class InterfacePrueba extends JFrame {
 		
 	}
 	public void listar(){
-		for (int i = 0; i < lc.getlistaCli().size(); i++) {
+		for (int i = 0; i < lc.getListaCli().size(); i++) {
 			System.out
-					.println(lc.getlistaCli().get(i).getNombre() + " " + lc.getlistaCli().get(i).getApellidos() + " "
-							+ lc.getlistaCli().get(i).getDni() + " " + lc.getlistaCli().get(i).getEdad() + " "
-							+ lc.getlistaCli().get(i).getColorPelo());
+					.println(lc.getListaCli().get(i).getNombre() + " " + lc.getListaCli().get(i).getApellidos() + " "
+							+ lc.getListaCli().get(i).getDni() + " " + lc.getListaCli().get(i).getEdad() + " "
+							+ lc.getListaCli().get(i).getColorPelo());
 		}
 		System.out.println();
 	}

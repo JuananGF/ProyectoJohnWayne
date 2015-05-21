@@ -1,22 +1,25 @@
 package Controlador;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import Modelo.AccesoFichero;
 import Modelo.Cliente;
 
 public class ListaClientes {
 	private ArrayList<Cliente> listaCli = new ArrayList<>();
-
+	final String fichero = "articulos.dat";
 	public void cargarLista() {
 
 	}
 
-	public void escribirNewElemento(Cliente cliente) {
+	public void escribirNewElemento(Cliente cliente) throws IOException, FileNotFoundException{
 		if (cliente != null) {
 			listaCli.add(cliente);
-			Collections.sort(getlistaCli(), new Comparator<Cliente>() {
+			Collections.sort(getListaCli(), new Comparator<Cliente>() {
 				@Override
 				public int compare(Cliente o1, Cliente o2) {
 					// Integer valor=new
@@ -27,13 +30,14 @@ public class ListaClientes {
 				}
 			});
 		}
+		new AccesoFichero().escribirObjeto(fichero, getListaCli());
 	}
 
-	public ArrayList<Cliente> getlistaCli() {
+	public ArrayList<Cliente> getListaCli() {
 		return listaCli;
 	}
 
-	public void setlCliente(ArrayList<Cliente> lCliente) {
+	public void setListaCli(ArrayList<Cliente> lCliente) {
 		this.listaCli = lCliente;
 	}
 }
