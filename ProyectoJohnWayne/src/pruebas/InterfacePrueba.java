@@ -167,8 +167,8 @@ public class InterfacePrueba extends JFrame {
 		btnSoyUnBoton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					lc.escribirNewElemento(new Cliente(txtNombre.getText(), txtApellido.getText(), txtDni.getText(),
-							Integer.parseInt(txtEdad.getText()), txtColPelo.getText()));
+					lc.escribirNewElemento(txtNombre.getText(), txtApellido.getText(), txtDni.getText(),
+							txtEdad.getText(), txtColPelo.getText());
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

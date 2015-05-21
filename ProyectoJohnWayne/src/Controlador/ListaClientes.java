@@ -7,16 +7,18 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import Modelo.AccesoFichero;
+import Modelo.Articulo;
 import Modelo.Cliente;
 
 public class ListaClientes {
 	private ArrayList<Cliente> listaCli = new ArrayList<>();
 	final String fichero = "articulos.dat";
-	public void cargarLista() {
-
+	public void cargarLista() throws ClassNotFoundException, IOException {
+		setListaCli((ArrayList<Cliente>) new AccesoFichero().leerObjeto(fichero));
 	}
 
-	public void escribirNewElemento(Cliente cliente) throws IOException, FileNotFoundException{
+	public void escribirNewElemento(String nombre,String apellidos,String dni,String edad,String colorPelo) throws IOException, FileNotFoundException{
+		Cliente cliente = new Cliente(nombre, apellidos, dni, Integer.parseInt(edad), colorPelo);
 		if (cliente != null) {
 			listaCli.add(cliente);
 			Collections.sort(getListaCli(), new Comparator<Cliente>() {
