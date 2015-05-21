@@ -7,37 +7,30 @@ import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class AccesoFichero {
 
-	public static ArrayList<Object> leerFichero(String ruta) throws IOException{
-		String cadena = new String("");
+	public Object leerObjeto(String ruta) throws IOException, ClassNotFoundException{
 		
-		FileInputStream archivoR = new FileInputStream(cadena.concat(ruta + ".obj"));
-		BufferedInputStream buffer = new BufferedInputStream(archivoR);
-		DataInputStream adaptadorR = new DataInputStream(buffer);
+		FileInputStream archivoR = new FileInputStream(ruta);
+		BufferedInputStream bufferR = new BufferedInputStream(archivoR);
+		ObjectInputStream objLectura = new ObjectInputStream(bufferR);
 		
-		//ArrayList<Object> listaR = ;
-		
-		
-		System.out.println("El valor almacenado es: ");	
-		
-		return null;
+		return objLectura.readObject();
 		
 	}
 	
-	public static void escribirFichero(String ruta, Object obj) throws IOException{
+	public void escribirFichero(String ruta, Object obj) throws IOException{
 		
-		String cadena = new String("");
-		
-		FileOutputStream archivoW = new FileOutputStream(cadena.concat(ruta + ".obj"));
-		
+		FileOutputStream archivoW = new FileOutputStream(ruta);
 		BufferedOutputStream bufferW = new BufferedOutputStream(archivoW);
+		ObjectOutputStream objEscritura = new ObjectOutputStream(bufferW);
 		
-		DataOutputStream conversorW = new DataOutputStream(bufferW);
-		
-		
+		objEscritura.writeObject(obj);
+		objEscritura.close();
 		
 	}
 }
