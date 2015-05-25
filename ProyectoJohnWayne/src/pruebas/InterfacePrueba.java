@@ -3,6 +3,7 @@ package pruebas;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import Controlador.ListaClientes;
+import Modelo.Articulo;
 import Modelo.Cliente;
 
 import java.awt.event.ActionListener;
@@ -39,9 +41,9 @@ public class InterfacePrueba extends JFrame {
 	private JLabel lblEdad;
 	private JLabel lblColPelo;
 	private JButton btnSoyUnBoton;
-
+	private Cliente clienteActual;
 	ListaClientes lc = new ListaClientes();
-	private JButton btnLimpiacoo;
+	private JButton btnLimpiar;
 	/**
 	 * Launch the application.
 	 */
@@ -73,8 +75,15 @@ public class InterfacePrueba extends JFrame {
 		gbl_contentPane.columnWeights = new double[] { 1.0, 0.0, Double.MIN_VALUE };
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
-
+		
+		
+		
 		comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+//				lc.buscarCliente();
+			}
+		});
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 2;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
@@ -83,6 +92,8 @@ public class InterfacePrueba extends JFrame {
 		gbc_comboBox.gridy = 0;
 		contentPane.add(comboBox, gbc_comboBox);
 
+		rellenaCombo();
+		
 		lblNombre = new JLabel("Nombre");
 		GridBagConstraints gbc_lblNombre = new GridBagConstraints();
 		gbc_lblNombre.insets = new Insets(0, 0, 5, 5);
@@ -179,7 +190,7 @@ public class InterfacePrueba extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				listar();
+				lc.listarCliente();
 				limpiar();
 			}
 		});
@@ -189,16 +200,37 @@ public class InterfacePrueba extends JFrame {
 		gbc_btnSoyUnBoton.gridy = 6;
 		contentPane.add(btnSoyUnBoton, gbc_btnSoyUnBoton);
 		
+		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpiar();
+			}
+		});
+		GridBagConstraints gbc_btnLimpiar = new GridBagConstraints();
+		gbc_btnLimpiar.insets = new Insets(0, 0, 0, 5);
+		gbc_btnLimpiar.gridx = 0;
+		gbc_btnLimpiar.gridy = 7;
+		contentPane.add(btnLimpiar, gbc_btnLimpiar);
+		
 	}
-	public void listar(){
-		for (int i = 0; i < lc.getListaCli().size(); i++) {
-			System.out
-					.println(lc.getListaCli().get(i).getNombre() + " " + lc.getListaCli().get(i).getApellidos() + " "
-							+ lc.getListaCli().get(i).getDni() + " " + lc.getListaCli().get(i).getEdad() + " "
-							+ lc.getListaCli().get(i).getColorPelo());
+	
+	public void rellenaCombo(){
+		try {
+			lc.cargarLista();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		System.out.println();
+		this.comboBox.removeAll();
+		for (Cliente cliente: lc.getListaCli()) {
+			this.comboBox.addItem(cliente.getNombre());
+		}
+//			clienteActual = lc.buscarCliente(this.comboBox.getSelectedItem());
 	}
+	
 	public void limpiar(){
 		txtNombre.setText("");
 		txtApellido.setText("");
