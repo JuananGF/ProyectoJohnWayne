@@ -13,13 +13,12 @@ public class principal {
 			lc.cargarLista();
 			// lc.escribirNewElemento("Juan Antonio", "Garcia", "1", 19,
 			// "Castaño");
-//			 lc.escribirNewElemento("Angel", "Valverde", "2", 23, "Castaño");
+			// lc.escribirNewElemento("Angel", "Valverde", "2", 23, "Castaño");
 			Cliente cliente = lc.buscarCliente("2");
 			System.out.println(cliente.getNombre());
 			lc.listarCliente();
-//			
+			
 			cliente.setColorPelo("Negro");
-//			System.out.println(cliente.getNombre());
 			lc.modificarElemento(cliente);
 			lc.listarCliente();
 		} catch (FileNotFoundException e) {

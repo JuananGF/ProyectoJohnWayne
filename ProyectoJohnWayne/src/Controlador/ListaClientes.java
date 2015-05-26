@@ -20,6 +20,7 @@ public class ListaClientes {
 	public void escribirNewElemento(String nombre, String apellidos, String dni, int edad, String colorPelo)
 			throws IOException, FileNotFoundException {
 		Cliente cliente = new Cliente(nombre, apellidos, dni, edad, colorPelo);
+		//idea buscarcliente
 		if (cliente.getNombre() != null) {
 			listaCli.add(cliente);
 			Collections.sort(getListaCli(), new Comparator<Cliente>() {
