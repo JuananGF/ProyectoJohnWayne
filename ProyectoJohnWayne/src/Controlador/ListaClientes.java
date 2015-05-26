@@ -12,7 +12,7 @@ import Modelo.Cliente;
 
 public class ListaClientes {
 	private ArrayList<Cliente> listaCli = new ArrayList<>();
-	final String fichero = "articulos.dat";
+	final String fichero = "clientes.dat";
 
 	public void cargarLista() throws ClassNotFoundException, IOException {
 		setListaCli((ArrayList<Cliente>) new AccesoFichero().leerObjeto(fichero));
@@ -50,11 +50,17 @@ public class ListaClientes {
 	}
 
 	public void listarCliente() {
-		for (int i = 0; i < getListaCli().size(); i++) {
-			System.out.println(getListaCli().get(i).getNombre() + " " + getListaCli().get(i).getApellidos() + " "
-					+ getListaCli().get(i).getDni() + " " + getListaCli().get(i).getEdad() + " "
-					+ getListaCli().get(i).getColorPelo());
+		for (Cliente cliente : listaCli) {
+			System.out.println(cliente.getNombre() + " " + cliente.getApellidos() + " " + cliente.getDni() + " "
+					+ cliente.getEdad() + " " + cliente.getColorPelo());
 		}
+		// for (int i = 0; i < getListaCli().size(); i++) {
+		// System.out.println(getListaCli().get(i).getNombre() + " " +
+		// getListaCli().get(i).getApellidos() + " "
+		// + getListaCli().get(i).getDni() + " " +
+		// getListaCli().get(i).getEdad() + " "
+		// + getListaCli().get(i).getColorPelo());
+		// }
 		System.out.println();
 	}
 
