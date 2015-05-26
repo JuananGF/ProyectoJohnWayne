@@ -58,12 +58,12 @@ public class ListaClientes {
 		System.out.println();
 	}
 
-	public Cliente buscarCliente(Cliente cliente) throws ClassNotFoundException, IOException {
+	public Cliente buscarCliente(String cliente) throws ClassNotFoundException, IOException {
 		cargarLista();
 		Cliente clienteEncontrado = null;
 		for (Cliente listaCli : listaCli) {
-			if (listaCli.getDni().equals(cliente.getDni())) {
-				clienteEncontrado = cliente;
+			if (listaCli.getDni().equals(cliente)) {
+				clienteEncontrado = listaCli;
 			}
 		}
 		return clienteEncontrado;
