@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import Modelo.AccesoFichero;
-import Modelo.Articulo;
 import Modelo.Cliente;
 
 public class ListaClientes {
@@ -18,9 +17,9 @@ public class ListaClientes {
 		setListaCli((ArrayList<Cliente>) new AccesoFichero().leerObjeto(fichero));
 	}
 
-	public void escribirNewElemento(String nombre, String apellidos, String dni, String edad, String colorPelo)
+	public void escribirNewElemento(String nombre, String apellidos, String dni, int edad, String colorPelo)
 			throws IOException, FileNotFoundException {
-		Cliente cliente = new Cliente(nombre, apellidos, dni, Integer.parseInt(edad), colorPelo);
+		Cliente cliente = new Cliente(nombre, apellidos, dni, edad, colorPelo);
 		if (cliente != null) {
 			listaCli.add(cliente);
 			Collections.sort(getListaCli(), new Comparator<Cliente>() {
@@ -34,12 +33,12 @@ public class ListaClientes {
 		new AccesoFichero().escribirObjeto(fichero, getListaCli());
 	}
 
-	private void modificarElemento(Cliente cliente) {
+	public void modificarElemento(Cliente cliente) {
 		int posicionArticuloEnLaLista = getListaCli().indexOf(cliente);
 		getListaCli().set(posicionArticuloEnLaLista, cliente);
 		try {
 			// Guarda la lista existente con el articulo modificado
-			escribirNewElemento(null, null, null, null, null);
+			escribirNewElemento(null, null, null, 0, null);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,21 +53,14 @@ public class ListaClientes {
 			System.out.println(cliente.getNombre() + " " + cliente.getApellidos() + " " + cliente.getDni() + " "
 					+ cliente.getEdad() + " " + cliente.getColorPelo());
 		}
-		// for (int i = 0; i < getListaCli().size(); i++) {
-		// System.out.println(getListaCli().get(i).getNombre() + " " +
-		// getListaCli().get(i).getApellidos() + " "
-		// + getListaCli().get(i).getDni() + " " +
-		// getListaCli().get(i).getEdad() + " "
-		// + getListaCli().get(i).getColorPelo());
-		// }
 		System.out.println();
 	}
 
-	public Cliente buscarCliente(String cliente) throws ClassNotFoundException, IOException {
+	public Cliente buscarCliente(String dni) throws ClassNotFoundException, IOException {
 		cargarLista();
 		Cliente clienteEncontrado = null;
 		for (Cliente listaCli : listaCli) {
-			if (listaCli.getDni().equals(cliente)) {
+			if (listaCli.getDni().equals(dni)) {
 				clienteEncontrado = listaCli;
 			}
 		}

@@ -179,7 +179,7 @@ public class InterfacePrueba extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					lc.escribirNewElemento(txtNombre.getText(), txtApellido.getText(), txtDni.getText(),
-							txtEdad.getText(), txtColPelo.getText());
+							Integer.parseInt(txtEdad.getText()), txtColPelo.getText());
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
