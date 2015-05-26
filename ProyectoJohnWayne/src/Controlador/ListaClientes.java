@@ -20,7 +20,7 @@ public class ListaClientes {
 	public void escribirNewElemento(String nombre, String apellidos, String dni, int edad, String colorPelo)
 			throws IOException, FileNotFoundException {
 		Cliente cliente = new Cliente(nombre, apellidos, dni, edad, colorPelo);
-		if (cliente != null) {
+		if (cliente.getNombre() != null) {
 			listaCli.add(cliente);
 			Collections.sort(getListaCli(), new Comparator<Cliente>() {
 				@Override
@@ -34,8 +34,8 @@ public class ListaClientes {
 	}
 
 	public void modificarElemento(Cliente cliente) {
-		int posicionArticuloEnLaLista = getListaCli().indexOf(cliente);
-		getListaCli().set(posicionArticuloEnLaLista, cliente);
+		int posicionLista = getListaCli().indexOf(cliente);
+		getListaCli().set(posicionLista, cliente);
 		try {
 			// Guarda la lista existente con el articulo modificado
 			escribirNewElemento(null, null, null, 0, null);
